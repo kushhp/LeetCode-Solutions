@@ -5,13 +5,13 @@ class Solution:
     
         heap = []
         for key in counts:
-            heapq.heappush(heap, (counts[key], (-1 *key)))
+            value = counts[key]
+            heapq.heappush(heap, (value, (-1 *key)))
         
         output = []
         while heap:
             count, val = heapq.heappop(heap)
             val *= -1
-            
             for i in range(count):
                 output.append(val)
         return output	
