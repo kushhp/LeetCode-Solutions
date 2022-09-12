@@ -1,17 +1,22 @@
 class Solution:
     def frequencySort(self, nums: List[int]) -> List[int]:
+        frequency = {} 
+        for num in nums:
+            if num in frequency:
+                frequency[num] += 1
+            else:
+                frequency[num] = 1
         
-        counts = Counter(nums)
-    
         heap = []
-        for key in counts:
-            value = counts[key]
-            heapq.heappush(heap, (value, (-1 *key)))
+        for num in frequency:
+            value = frequency[num]
+            heapq.heappush(heap, (value, -1*num))
         
-        output = []
+        res = []
         while heap:
-            count, val = heapq.heappop(heap)
-            val *= -1
-            for i in range(count):
-                output.append(val)
-        return output	
+            pair = heapq.heappop(heap)
+            freq = pair[0]
+            num = pair[1]*-1
+            for i in range(freq):
+                res.append(num)
+        return res
