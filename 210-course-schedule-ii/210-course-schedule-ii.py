@@ -23,6 +23,6 @@ class Solution:
             return True
 
         for c in range(numCourses):
-            if dfs(c) == False:
-                return []
+            if not dfs(c):
+                return 
         return output
